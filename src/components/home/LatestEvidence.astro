@@ -2,21 +2,32 @@
 import { getHeadlineEvidence } from "../../data/releases/headline";
 
 const evidence = getHeadlineEvidence("js-1.0");
+const percentage = (numerator: number, denominator: number) =>
+  `${((numerator / denominator) * 100).toFixed(1)}%`;
 const observations = [
   {
-    value: `${evidence.matchedAllFive.numerator} of ${evidence.matchedAllFive.denominator}`,
+    value: percentage(
+      evidence.matchedAllFive.numerator,
+      evidence.matchedAllFive.denominator,
+    ),
     label: "reference-matched findings appeared in all five repetitions",
     href: evidence.matchedAllFive.explorerPath,
     tone: "matched",
   },
   {
-    value: `${evidence.unmatchedOnce.numerator} of ${evidence.unmatchedOnce.denominator}`,
+    value: percentage(
+      evidence.unmatchedOnce.numerator,
+      evidence.unmatchedOnce.denominator,
+    ),
     label: "unmatched findings appeared in only one repetition",
     href: evidence.unmatchedOnce.explorerPath,
     tone: "unmatched",
   },
   {
-    value: `${evidence.unmatchedAllFive.numerator} of ${evidence.unmatchedAllFive.denominator}`,
+    value: percentage(
+      evidence.unmatchedAllFive.numerator,
+      evidence.unmatchedAllFive.denominator,
+    ),
     label: "unmatched findings appeared in all five repetitions",
     href: evidence.unmatchedAllFive.explorerPath,
     tone: "unmatched-outline",

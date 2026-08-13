@@ -23,8 +23,10 @@ async function expectHomepageEvidence(page: import("@playwright/test").Page) {
     await expect(scope.getByText(label, { exact: true })).toBeVisible();
   }
 
-  for (const text of ["134 of 158", "80 of 161", "22 of 161"]) {
-    await expect(page.getByText(text, { exact: false }).first()).toBeVisible();
+  for (const percentage of ["84.8%", "49.7%", "13.7%"]) {
+    await expect(
+      page.locator(".evidence-band .metric").filter({ hasText: percentage }),
+    ).toBeVisible();
   }
 
   await expect(
