@@ -53,6 +53,11 @@ async function expectHomepageEvidence(page: import("@playwright/test").Page) {
   for (const label of ["Read the paper", "View methodology", "Download data"]) {
     await expect(page.getByRole("link", { name: label }).first()).toBeVisible();
   }
+  await expect(
+    page.getByRole("navigation", { name: "Publication links" }).getByRole("link", {
+      name: "Benchmark Harness",
+    }),
+  ).toHaveAttribute("href", "https://github.com/snyk-labs/snyk-vulnbench");
 }
 
 test("communicates the JS 1.0 question and evidence", async ({ page }) => {
